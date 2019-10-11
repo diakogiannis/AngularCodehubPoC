@@ -5,15 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {HttpClientModule} from '@angular/common/http';
+import { HeaderComponent } from './core/header/header.component';
+import { MainPageComponent } from './core/main-page/main-page.component';
+import { CoreModule } from './core/core.module';
+import { FeatModule } from './feat/feat.module';
+import { BugReportingApiModule } from './shared/bug-reporting-api/bug-reporting-api.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule,
+    FeatModule,
+    BugReportingApiModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
