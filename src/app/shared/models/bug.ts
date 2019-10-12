@@ -1,4 +1,4 @@
-import {Comments} from './Comments';
+import { Comments } from './Comments';
 
 export interface Bug {
   id: string;

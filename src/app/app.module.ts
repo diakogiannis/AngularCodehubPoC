@@ -1,16 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './core/header/header.component';
 import { MainPageComponent } from './core/main-page/main-page.component';
 import { CoreModule } from './core/core.module';
-import { FeatModule } from './feat/feat.module';
-import { BugReportingApiModule } from './shared/bug-reporting-api/bug-reporting-api.module';
-import {DashboardModule} from './dashboard/dashboard.module';
+import { BugManagementModule } from './features/bug-management/bug-management.module';
 
 @NgModule({
   declarations: [
@@ -22,11 +18,8 @@ import {DashboardModule} from './dashboard/dashboard.module';
     BrowserModule,
     HttpClientModule,
     CoreModule,
-    FeatModule,
-    BugReportingApiModule,
-    AppRoutingModule,
-    HttpClientModule,
-    DashboardModule
+    BugManagementModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
