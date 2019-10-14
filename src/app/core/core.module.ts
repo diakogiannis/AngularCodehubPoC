@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreRoutingModule } from './core-routing.module';
-import { BugManagementModule } from '../features/bug-management/bug-management.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [],
   imports: [
+    BrowserModule,
+    HttpClientModule,
     CommonModule,
-    CoreRoutingModule,
-    BugManagementModule
+  ],
+  exports: [
+    BrowserModule,
+    HttpClientModule,
+    CommonModule
   ]
 })
 export class CoreModule { }
