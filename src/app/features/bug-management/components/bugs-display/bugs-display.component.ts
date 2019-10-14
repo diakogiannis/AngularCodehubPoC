@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Bug } from 'src/app/shared/models/bug';
 import { BugsApiService } from 'src/app/shared/bugs-api.service';
 
@@ -9,17 +9,11 @@ import { BugsApiService } from 'src/app/shared/bugs-api.service';
 })
 export class BugsDisplayComponent implements OnInit {
 
-  bugs: Bug[];
+  @Input() bugs: Bug[];
 
   constructor(private bugsApiService: BugsApiService) {
   }
 
   ngOnInit() {
-    this.bugsApiService.getBugs().subscribe(bugs => this.getBugs(bugs));
-
-  }
-
-  public getBugs(bugs) {
-    this.bugs = bugs;
   }
 }

@@ -6,14 +6,15 @@ import { BugsSearchComponent } from './components/bugs-search/bugs-search.compon
 import { BugCreateComponent } from './components/bug-create/bug-create.component';
 import { BugEditComponent } from './components/bug-edit/bug-edit.component';
 import { BugFormComponent } from './components/bug-form/bug-form.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [BugsDisplayComponent, BugsSearchComponent, BugCreateComponent, BugEditComponent, BugFormComponent],
   imports: [
     CommonModule,
-    BugManagementRoutingModule
+    BugManagementRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     BugsDisplayComponent, BugsSearchComponent, BugCreateComponent, BugEditComponent, BugFormComponent
