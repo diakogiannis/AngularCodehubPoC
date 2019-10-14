@@ -15,8 +15,6 @@ import { BugManagementModule } from './features/bug-management/bug-management.mo
     MainPageComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
     CoreModule,
     BugManagementModule,
     AppRoutingModule
