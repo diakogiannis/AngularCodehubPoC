@@ -9,6 +9,12 @@ export const environment = {
 };
 
 /*
+
+GET all: https://bug-report-system-server.herokuapp.com/bugs
+GET by id: https://bug-report-system-server.herokuapp.com/bugs/5ae4a5cc4f10385e180a8ac1
+GET sorting and pagination: https://bug-report-system-server.herokuapp.com/bugs?sort=title,desc&page=0&size=10&title=bug&priority=1&reporter=QA&status=Done
+
+
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *
