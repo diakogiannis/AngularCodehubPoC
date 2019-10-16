@@ -1,7 +1,7 @@
+import { Bug } from 'src/app/shared/models/bug';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Bug } from './models/bug';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -32,6 +32,18 @@ export class BugsApiService {
       return new Observable<Bug[]>();
     } else {
       return bugsList;
+    }
+  }
+
+  getBug(id: string): Observable<Bug> {
+    const url = environment.baseUrl + '/bugs' + id; //'/5da610e243ae2f0017f88e73';
+    console.log('set endpoint: ' + url);
+    let bug: Observable<Bug>;
+    bug = this.http.get<Bug>(url);
+    if (bug == null) {
+      return new Observable<Bug>();
+    } else {
+      return bug;
     }
   }
 
