@@ -36,7 +36,7 @@ export class BugsApiService {
   }
 
   getBug(id: string): Observable<Bug> {
-    const url = environment.baseUrl + '/bugs' + id; //'/5da610e243ae2f0017f88e73';
+    const url = environment.baseUrl + '/bugs' + id; //'/5da7010fcd5eba0017126443';
     console.log('set endpoint: ' + url);
     let bug: Observable<Bug>;
     bug = this.http.get<Bug>(url);
@@ -44,6 +44,18 @@ export class BugsApiService {
       return new Observable<Bug>();
     } else {
       return bug;
+    }
+  }
+
+  getAllBugs(): Observable<Bug[]> {
+    const url = environment.baseUrl + '/bugs';
+    console.log('endpoint: ' + url);
+    let bugslist: Observable<Bug[]>;
+    bugslist = this.http.get<Bug[]>(url);
+    if (bugslist == null) {
+      return new Observable<Bug[]>();
+    } else {
+      return bugslist;
     }
   }
 

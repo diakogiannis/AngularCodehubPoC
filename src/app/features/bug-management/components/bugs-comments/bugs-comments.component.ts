@@ -16,7 +16,9 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
   TextFormControl: FormControl;
   NameReporterFormControl: FormControl;
 
-  reporter$: Observable<Bug>;
+  bug$: Observable<Bug>;
+  reporterList: Array<string>;
+
   param: string;
   routeSubscription: Subscription;
 
@@ -33,7 +35,12 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
     this.routeSubscription = this.activeRoute.params.subscribe((p) => {
       this.param = '/' + p.id;
     });
-    this.reporter$ = this.bugsApiService.getBug(this.param);
+    //this.bug$ = this.bugsApiService.getBug(this.param);
+
+    this.bugsApiService.getAllBugs().subscribe((p) => {
+      this.reporterList = p.map(c => c.reporter)
+      .filter(function(value, index){ return p.map(c => c.reporter).indexOf(value) == index });
+    });
   }
 
   ngOnDestroy(): void {
