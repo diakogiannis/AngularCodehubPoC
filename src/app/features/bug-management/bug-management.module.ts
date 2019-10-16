@@ -7,17 +7,20 @@ import { BugCreateComponent } from './components/bug-create/bug-create.component
 import { BugEditComponent } from './components/bug-edit/bug-edit.component';
 import { BugFormComponent } from './components/bug-form/bug-form.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import { BugsCommentsComponent } from './components/bugs-comments/bugs-comments.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [BugsDisplayComponent, BugsSearchComponent, BugCreateComponent, BugEditComponent, BugFormComponent],
+  declarations: [BugsDisplayComponent, BugsSearchComponent, BugCreateComponent, BugEditComponent, BugFormComponent,
+    BugsCommentsComponent],
   imports: [
     SharedModule,
-    BugManagementRoutingModule
+    BugManagementRoutingModule, ReactiveFormsModule
   ],
   exports: [
-    BugsDisplayComponent, BugsSearchComponent, BugCreateComponent, BugEditComponent, BugFormComponent
+    BugsDisplayComponent, BugsSearchComponent, BugCreateComponent, BugEditComponent, BugFormComponent,
+    BugsCommentsComponent
   ]
 })
 export class BugManagementModule { }

@@ -1,0 +1,27 @@
+<form class="FormComments" [formGroup]="FormComments" (submit)= "onSubmit(FormComments)">
+  <div class="container">
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-4">Free Text</label>
+        <textarea class="form-control col-md-5" rows="2" formControlName="freetext"></textarea>
+
+        <div *ngIf="FormComments.get('freetext').errors?.required && FormComments.get('freetext').dirty" class="FieldActive col-md-3">
+            Field is required!
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label class="col-md-4">Name of the reporter</label>
+        <select class="browser-default custom-select col-md-5" formControlName="nameReporter">ion>
+          <option [ngValue]="null">Please select</option>
+          <option value="{{(reporter$ | async)?.reporter}}">{{ (reporter$ | async)?.reporter }}</option>
+        </select>
+        <div *ngIf="FormComments.get('nameReporter').errors?.required && FormComments.get('nameReporter').dirty" class="FieldActive col-md-3">
+            Field is required!
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
