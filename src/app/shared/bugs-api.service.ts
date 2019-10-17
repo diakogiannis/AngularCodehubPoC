@@ -19,25 +19,16 @@ export class BugsApiService {
   getBugs(searchForm: SearchForm = null, page: number = null, size: number = null): Observable<Bug[]> {
 
     let urlParams = new HttpParams();
-    if (page != null) {
-      urlParams = urlParams.set('page', page.toString());
-    }
-    if (size != null) {
-      urlParams = urlParams.set('size', size.toString());
-    }
+
+    if (page != null) { urlParams = urlParams.set('page', page.toString()); }
+    if (size != null) { urlParams = urlParams.set('size', size.toString()); }
+    if (sort) { urlParams = urlParams.set('sort', sort); }
+
     if (searchForm) {
-      if (searchForm.title) {
-        urlParams = urlParams.set('title', searchForm.title);
-      }
-      if (searchForm.priority != null) {
-        urlParams = urlParams.set('priority', searchForm.priority.toString());
-      }
-      if (searchForm.reporter) {
-        urlParams = urlParams.set('reporter', searchForm.reporter);
-      }
-      if (searchForm.status) {
-        urlParams = urlParams.set('status', searchForm.status);
-      }
+      if (searchForm.title) { urlParams = urlParams.set('title', searchForm.title); }
+      if (searchForm.priority != null) { urlParams = urlParams.set('priority', searchForm.priority.toString()); }
+      if (searchForm.reporter) { urlParams = urlParams.set('reporter', searchForm.reporter); }
+      if (searchForm.status) { urlParams = urlParams.set('status', searchForm.status); }
     }
 
     return this.http.get<Bug[]>(this.endpoint, {params: urlParams});
@@ -55,17 +46,6 @@ export class BugsApiService {
     }
   }
 
-  getAllBugs(): Observable<Bug[]> {
-    const url = environment.baseUrl + '/bugs';
-    console.log('endpoint: ' + url);
-    let bugslist: Observable<Bug[]>;
-    bugslist = this.http.get<Bug[]>(url);
-    if (bugslist == null) {
-      return new Observable<Bug[]>();
-    } else {
-      return bugslist;
-    }
-  }
 
   postBug(bugForm: FormGroup): Observable<Bug> {
     alert('IMPLEMENT ME YOU FOOL');
