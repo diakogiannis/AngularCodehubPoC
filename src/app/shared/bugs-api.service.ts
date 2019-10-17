@@ -36,11 +36,14 @@ export class BugsApiService {
   //   }
   // }
 
-  getBugs(searchForm: SearchForm = null, page: number = null, size: number = null): Observable<Bug[]> {
+  getBugs(searchForm: SearchForm = null, page: number = null, size: number = null, sort: string = null): Observable<Bug[]> {
 
     let urlParams = new HttpParams();
+
     if (page != null) { urlParams = urlParams.set('page', page.toString()); }
     if (size != null) { urlParams = urlParams.set('size', size.toString()); }
+    if (sort) { urlParams = urlParams.set('sort', sort); }
+
     if (searchForm) {
       if (searchForm.title) { urlParams = urlParams.set('title', searchForm.title); }
       if (searchForm.priority != null) { urlParams = urlParams.set('priority', searchForm.priority.toString()); }
