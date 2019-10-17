@@ -37,9 +37,14 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
     });
     //this.bug$ = this.bugsApiService.getBug(this.param);
 
+    /*
+     * What if a reporter does not have an associated bug?
+     * He is then considered as if he does not exist.
+     * We should -somehow- have a static list of reporter names.
+     */
     this.bugsApiService.getBugs().subscribe((p) => {
       this.reporterList = p.map(c => c.reporter)
-      .filter(function(value, index){ return p.map(c => c.reporter).indexOf(value) == index });
+        .filter(function (value, index) { return p.map(c => c.reporter).indexOf(value) == index });
     });
   }
 
@@ -49,7 +54,7 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit(myForm: FormGroup){
+  onSubmit(myForm: FormGroup) {
     if (!myForm.valid) {
       return;
     }
