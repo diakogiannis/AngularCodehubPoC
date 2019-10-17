@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {BugFormComponent} from '../bug-form/bug-form.component';
 
 @Component({
   selector: 'codehub-bug-create',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BugCreateComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(BugFormComponent, {static: true})
+  formComponent: BugFormComponent;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  saveMe() {
+    this.formComponent
+  }
 }
