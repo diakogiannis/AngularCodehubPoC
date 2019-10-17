@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BugFormComponent} from '../bug-form/bug-form.component';
 import {BugsApiService} from '../../../../shared/bugs-api.service';
-import {ActivatedRouteSnapshot, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Bug} from '../../../../shared/models/bug';
 
 @Component({
@@ -18,12 +18,17 @@ export class BugEditComponent implements OnInit {
   constructor(
     private bugsApiService: BugsApiService
     , private router: Router
-    , private activatedRoute: ActivatedRouteSnapshot
+    , private activatedRoute: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
-    this.bug = this.activatedRoute.data.bug;
+    console.log("hey mama");
+
+    this.activatedRoute.data.subscribe(bug => {
+      console.log(bug);
+      this.bug = bug.bug;
+    });
   }
 
   update() {

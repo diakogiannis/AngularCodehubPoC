@@ -16,7 +16,7 @@ export class BugsApiService {
   constructor(private http: HttpClient) {
   }
 
-  getBugs(searchForm: SearchForm = null, page: number = null, size: number = null): Observable<Bug[]> {
+  getBugs(searchForm: SearchForm = null, page: number = null, size: number = null, sort: string = null): Observable<Bug[]> {
 
     let urlParams = new HttpParams();
 

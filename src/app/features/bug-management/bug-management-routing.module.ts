@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'bugs-search', component: BugsSearchComponent},
   {path: 'bug-create', component: BugCreateComponent},
   {
-    path: 'bug-edit/:id', component: BugEditComponent, resolve: {
+    path: 'bug-edit/:id', component: BugEditComponent , resolve: {
       bug: FindBugDataResolverService
     }
   },
