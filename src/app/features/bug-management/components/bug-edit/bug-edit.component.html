@@ -1,6 +1,14 @@
 <p>bug-edit works!</p>
-<codehub-bug-form></codehub-bug-form>
+<codehub-bug-form [bug]="bug"></codehub-bug-form>
+
+
+<button (click)="update()">Save Me </button>
+
 
 <codehub-bugs-comments></codehub-bugs-comments>
 <br />
 <codehub-bugs-display-comments></codehub-bugs-display-comments>
+
+
+
+<button (click)="goBack()">Save Me </button>

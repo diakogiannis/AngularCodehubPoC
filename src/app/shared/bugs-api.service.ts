@@ -1,8 +1,9 @@
-import { Bug } from 'src/app/shared/models/bug';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import {Bug} from 'src/app/shared/models/bug';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {environment} from 'src/environments/environment';
+import {FormGroup} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class BugsApiService {
   }
 
   getBug(id: string): Observable<Bug> {
-    const url = environment.baseUrl + '/bugs' + id; //'/5da7010fcd5eba0017126443';
+    const url = environment.baseUrl + '/bugs' + id; // '/5da7010fcd5eba0017126443';
     console.log('set endpoint: ' + url);
     let bug: Observable<Bug>;
     bug = this.http.get<Bug>(url);
@@ -59,4 +60,15 @@ export class BugsApiService {
     }
   }
 
+  postBug(bugForm: FormGroup): Observable<Bug> {
+    alert('IMPLEMENT ME YOU FOOL');
+    console.log('IMPLEMENT ME YOU IDIOT');
+    return of<Bug>(null);
+  }
+
+  putBug(bugForm: FormGroup): Observable<Bug> {
+    alert('IMPLEMENT ME YOU FOOL');
+    console.log('IMPLEMENT ME YOU IDIOT');
+    return of<Bug>(null);
+  }
 }
