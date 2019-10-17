@@ -37,7 +37,7 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
     });
     //this.bug$ = this.bugsApiService.getBug(this.param);
 
-    this.bugsApiService.getAllBugs().subscribe((p) => {
+    this.bugsApiService.getBugs().subscribe((p) => {
       this.reporterList = p.map(c => c.reporter)
       .filter(function(value, index){ return p.map(c => c.reporter).indexOf(value) == index });
     });
