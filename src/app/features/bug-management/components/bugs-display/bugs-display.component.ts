@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Bug } from 'src/app/shared/models/bug';
 import { BugsApiService } from 'src/app/shared/bugs-api.service';
 
@@ -9,43 +9,11 @@ import { BugsApiService } from 'src/app/shared/bugs-api.service';
 })
 export class BugsDisplayComponent implements OnInit {
 
-  bugs: Bug[];
+  @Input() bugs: Bug[];
 
-  sortBy: string;
-  page: number;
-  size = 10;
-
-  pages: number;
-
-
-  constructor(private bugsApiService: BugsApiService) {
-  }
+  constructor() { }
 
 
   ngOnInit() {
-    if (this.bugs == null) {
-      this.getBugs('title');
-    }
-  }
-
-
-  public getBugs(sort: string) {
-    if (this.sortBy == null) {
-      this.sortBy = 'asc';
-    }
-
-    if (this.page == null) {
-      this.page = 0;
-    }
-
-
-    if (this.sortBy === 'desc') {
-      this.sortBy = 'asc';
-    } else {
-      this.sortBy = 'desc';
-    }
-    this.bugsApiService.getBugs(sort + ',' + this.sortBy, this.page, this.size).subscribe(bugsResponse => {
-      this.bugs = bugsResponse;
-    });
   }
 }

@@ -13,7 +13,8 @@ const routes: Routes = [
     path: 'bug-edit/:id', component: BugEditComponent, resolve: {
       bug: FindBugDataResolverService
     }
-  }
+  },
+  { path: '**', redirectTo: 'bugs-search', pathMatch: 'full' }
 ];
 
 @NgModule({

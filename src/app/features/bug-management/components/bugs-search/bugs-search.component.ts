@@ -3,8 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BugsApiService } from 'src/app/shared/bugs-api.service';
 import { SearchForm } from 'src/app/shared/models/search-form';
 import { Bug } from 'src/app/shared/models/bug';
-import { BugsDisplayComponent } from '../bugs-display/bugs-display.component';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'codehub-bugs-search',
