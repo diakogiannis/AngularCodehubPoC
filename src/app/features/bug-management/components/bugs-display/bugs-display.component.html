@@ -18,6 +18,12 @@
       <td>{{bug.reporter}}</td>
       <td>{{bug.updatedAt}}</td>
       <td>{{bug.createdAt}}</td>
+      <td>
+        <img id="edit-icon" class="icon" src="assets/images/edit-icon.png" [routerLink]="['/bug-edit', bug.id]">
+      </td>
+      <td>
+        <img id="delete-icon" class="icon" src="assets/images/delete-icon.png" (click)="delete(bug.id)">
+      </td>
     </tr>
   </tbody>
 
