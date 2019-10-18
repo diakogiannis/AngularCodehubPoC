@@ -34,16 +34,21 @@ export class BugsApiService {
     return this.http.get<Bug[]>(this.endpoint, {params: urlParams});
   }
 
+  // '/5da7010fcd5eba0017126443';
   getBug(id: string): Observable<Bug> {
-    const url = this.endpoint + '/' + id; // '/5da7010fcd5eba0017126443';
-    console.log('set endpoint: ' + url);
-    let bug: Observable<Bug>;
-    bug = this.http.get<Bug>(url);
-    if (bug == null) {
-      return new Observable<Bug>();
-    } else {
-      return bug;
-    }
+    return this.http.get<Bug>(this.endpoint + '/' + id);
+  }
+
+  postBug(bug: Bug): Observable<Bug> {
+    return this.http.post<Bug>(this.endpoint, bug);
+  }
+
+  putBug(bug: Bug): Observable<Bug> {
+    return this.http.put<Bug>(this.endpoint + '/' + bug.id, bug);
+  }
+
+  deleteBug(id: number) {
+    return this.http.delete(this.endpoint + '/' + id);
   }
 
 
