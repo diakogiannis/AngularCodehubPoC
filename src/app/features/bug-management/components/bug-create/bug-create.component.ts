@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {BugFormComponent} from '../bug-form/bug-form.component';
 import {BugsApiService} from '../../../../shared/bugs-api.service';
 import {Router} from '@angular/router';
+import {Bug} from '../../../../shared/models/bug';
 
 @Component({
   selector: 'codehub-bug-create',
@@ -15,6 +16,7 @@ export class BugCreateComponent implements OnInit {
 
   constructor(
     private bugsApiService: BugsApiService
+    // tslint:disable-next-line:align
     , private router: Router
   ) {
   }
@@ -23,7 +25,7 @@ export class BugCreateComponent implements OnInit {
   }
 
   create() {
-    this.bugsApiService.postBug(this.formComponent.bugForm).subscribe(
+    this.bugsApiService.postBug(this.formComponent.bugForm.value as Bug).subscribe(
       x => {
         console.log(x);
       }, err => {

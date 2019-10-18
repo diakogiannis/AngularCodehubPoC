@@ -23,7 +23,7 @@ export class BugEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("hey mama");
+    console.log('hey mama');
 
     this.activatedRoute.data.subscribe(bug => {
       console.log(bug);
@@ -32,7 +32,7 @@ export class BugEditComponent implements OnInit {
   }
 
   update() {
-    this.bugsApiService.putBug(this.formComponent.bugForm).subscribe(
+    this.bugsApiService.putBug(this.formComponent.bugForm.value as Bug).subscribe(
       x => {
         console.log(x);
       }, err => {

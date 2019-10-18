@@ -1,10 +1,9 @@
 import {Bug} from 'src/app/shared/models/bug';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {environment} from 'src/environments/environment';
 import {SearchForm} from './models/search-form';
-import {FormGroup} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +19,29 @@ export class BugsApiService {
 
     let urlParams = new HttpParams();
 
-    if (page != null) { urlParams = urlParams.set('page', page.toString()); }
-    if (size != null) { urlParams = urlParams.set('size', size.toString()); }
-    if (sort) { urlParams = urlParams.set('sort', sort); }
+    if (page != null) {
+      urlParams = urlParams.set('page', page.toString());
+    }
+    if (size != null) {
+      urlParams = urlParams.set('size', size.toString());
+    }
+    if (sort) {
+      urlParams = urlParams.set('sort', sort);
+    }
 
     if (searchForm) {
-      if (searchForm.title) { urlParams = urlParams.set('title', searchForm.title); }
-      if (searchForm.priority != null) { urlParams = urlParams.set('priority', searchForm.priority.toString()); }
-      if (searchForm.reporter) { urlParams = urlParams.set('reporter', searchForm.reporter); }
-      if (searchForm.status) { urlParams = urlParams.set('status', searchForm.status); }
+      if (searchForm.title) {
+        urlParams = urlParams.set('title', searchForm.title);
+      }
+      if (searchForm.priority != null) {
+        urlParams = urlParams.set('priority', searchForm.priority.toString());
+      }
+      if (searchForm.reporter) {
+        urlParams = urlParams.set('reporter', searchForm.reporter);
+      }
+      if (searchForm.status) {
+        urlParams = urlParams.set('status', searchForm.status);
+      }
     }
 
     return this.http.get<Bug[]>(this.endpoint, {params: urlParams});
@@ -49,18 +62,5 @@ export class BugsApiService {
 
   deleteBug(id: number) {
     return this.http.delete(this.endpoint + '/' + id);
-  }
-
-
-  postBug(bugForm: FormGroup): Observable<Bug> {
-    alert('IMPLEMENT ME YOU FOOL');
-    console.log('IMPLEMENT ME YOU IDIOT');
-    return of<Bug>(null);
-  }
-
-  putBug(bugForm: FormGroup): Observable<Bug> {
-    alert('IMPLEMENT ME YOU FOOL');
-    console.log('IMPLEMENT ME YOU IDIOT');
-    return of<Bug>(null);
   }
 }
