@@ -49,4 +49,9 @@ export class BugsApiService {
   deleteBug(id: number) {
     return this.http.delete(this.endpoint + '/' + id);
   }
+
+  getAllBugs(): Observable<Bug[]> {
+    return this.http.get<Bug[]>(this.endpoint);
+  }
+
 }

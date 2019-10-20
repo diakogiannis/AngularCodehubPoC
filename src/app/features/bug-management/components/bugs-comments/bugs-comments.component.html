@@ -1,27 +1,36 @@
-<form class="FormComments" [formGroup]="FormComments" (submit)= "onSubmit(FormComments)">
+<form class="FormComments" [formGroup]="FormComments" (submit)= "onSubmit(true)">
   <div class="container">
     <div class="row">
-      <div class="form-group col-md-12">
-        <label class="col-md-4">Description</label>
-        <textarea class="form-control col-md-5" rows="2" formControlName="freetext"></textarea>
-
+      <div class="form-group col-md-10">
+        <label class="col-md-2">Description</label>
+        <textarea class="form-control col-md-6" rows="2" formControlName="freetext"></textarea>
         <div *ngIf="FormComments.get('freetext').errors?.required && FormComments.get('freetext').dirty" class="FieldActive col-md-3">
             Field is required!
         </div>
       </div>
-      <div class="form-group col-md-12">
-        <label class="col-md-4">Name of the reporter</label>
-        <select class="browser-default custom-select col-md-5" formControlName="nameReporter">ion>
+
+      <div class="form-group col-md-10">
+        <label class="col-md-2">Name of the reporter</label>
+        <!-- <select class="browser-default custom-select col-md-5" formControlName="nameReporter">ion>
           <option [ngValue]="null">Please select</option>
           <option *ngFor="let item of reporterList">{{item}}</option>
         </select>
         <div *ngIf="FormComments.get('nameReporter').errors?.required && FormComments.get('nameReporter').dirty" class="FieldActive col-md-3">
             Field is required!
+        </div> -->
+        <input type="text" class="form-control col-md-6" formControlName="nameReporter">
+        <div *ngIf="FormComments.get('nameReporter').errors?.required && FormComments.get('nameReporter').dirty" class="FieldActive col-md-3">
+            Field is required!
         </div>
       </div>
-      <div class="form-group col-md-12">
+
+      <div class="form-group col-md-10">
           <button type="submit" class="btn btn-primary">Submit</button>
       </div>
+
     </div>
   </div>
 </form>
+<br />
+
+<codehub-bugs-display-comments [comments]="comments"></codehub-bugs-display-comments>

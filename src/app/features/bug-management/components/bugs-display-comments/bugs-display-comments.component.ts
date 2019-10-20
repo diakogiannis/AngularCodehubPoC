@@ -1,5 +1,5 @@
 import { BugsApiService } from 'src/app/shared/bugs-api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Bug } from 'src/app/shared/models/bug';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -12,19 +12,17 @@ import { Comments } from 'src/app/shared/models/comments';
 })
 export class BugsDisplayCommentsComponent implements OnInit {
 
-  bug$: Observable<Bug>;
+  @Input() comments: Comments[];
+
   param: string;
   routeSubscription: Subscription;
-  com: Comments[];
 
   constructor(private bugsApiService: BugsApiService, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.routeSubscription = this.activeRoute.params.subscribe((p) => {
-      this.param = '/' + p.id;
+      this.param = p.id;
     });
-    //this.bug$ = this.bugsApiService.getBug(this.param);
-    this.bugsApiService.getBug(this.param).subscribe((p) => { this.com = p.comments.map(c => c) });
+    this.bugsApiService.getBug(this.param).subscribe((p) => { this.comments = (p.comments != null && p.comments.map(c => c)); });
   }
-
 }

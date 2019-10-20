@@ -1,3 +1,5 @@
+import { BugsCommentsComponent } from './components/bugs-comments/bugs-comments.component';
+import { BugsGuardGuard } from './../../shared/bugs-guard.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BugsSearchComponent } from './components/bugs-search/bugs-search.component';
@@ -8,7 +10,7 @@ const routes: Routes = [
   // { path: '', component: HomePage? },
   { path: 'bugs-search', component: BugsSearchComponent },
   { path: 'bug-create', component: BugCreateComponent },
-  { path: 'bug-edit/:id', component: BugEditComponent },
+  { path: 'bug-edit/:id', component: BugEditComponent, canDeactivate: [BugsGuardGuard] },
   { path: '**', redirectTo: 'bugs-search', pathMatch: 'full' }
 ];
 

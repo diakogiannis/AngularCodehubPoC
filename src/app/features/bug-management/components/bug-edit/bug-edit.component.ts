@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BugEditComponent implements OnInit {
 
+  IsValid: boolean;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  formValidChangedHandler(formisValid: boolean) {
+    this.IsValid = formisValid;
   }
 
 }

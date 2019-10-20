@@ -1,6 +1,4 @@
 <p>bug-edit works!</p>
 <codehub-bug-form></codehub-bug-form>
 
-<codehub-bugs-comments></codehub-bugs-comments>
-<br />
-<codehub-bugs-display-comments></codehub-bugs-display-comments>
+<codehub-bugs-comments [FormIsValid] ="IsValid" (FormIsValidChanged)="formValidChangedHandler($event)"></codehub-bugs-comments>
