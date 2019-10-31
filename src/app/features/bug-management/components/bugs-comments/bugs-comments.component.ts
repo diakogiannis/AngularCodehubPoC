@@ -25,8 +25,8 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
   param: string;
   routeSubscription: Subscription;
 
-    @Input() FormIsValid: boolean;
-    @Output() FormIsValidChanged: EventEmitter<boolean> =   new EventEmitter();
+  @Input() FormIsValid: boolean;
+  @Output() FormIsValidChanged: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private bugsApiService: BugsApiService, private activeRoute: ActivatedRoute) { }
 
@@ -57,10 +57,10 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
     this.FormIsValid = true;
 
     this.FormComments.valueChanges.subscribe(form => {
-      if (form.freetext.length > 0 && form.nameReporter.length > 0)  {
-         this.FormIsValid = false;
+      if (form.freetext.length > 0 && form.nameReporter.length > 0) {
+        this.FormIsValid = false;
       } else {
-          this.FormIsValid = true;
+        this.FormIsValid = true;
       }
       this.FormIsValidChanged.emit(this.FormIsValid);
     });
@@ -75,20 +75,20 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
     this.FormIsValidChanged.emit(this.FormIsValid);
 
     if (AddComment) {
-      //Add comment
-      this.bug.comments.push({ description: this.FormComments.get('freetext').value,  reporter: this.FormComments.get('nameReporter').value});
+      // Add comment
+      this.bug.comments.push({ _id: null, description: this.FormComments.get('freetext').value, reporter: this.FormComments.get('nameReporter').value });
 
       this.bugsApiService.putBug(this.bug).subscribe(
-          () => alert('Bug has been added.'),
-          (err) => {
-            alert('An error occurred while adding comment for bug !\nRefer to console for details.');
-            console.error(err);
-          },
-            () =>
-              this.bugsApiService.getBug(this.param).subscribe(p => this.comments = p.comments.map(f => f)
-            )
-          );
-          this.FormComments.reset();
+        () => alert('Bug has been added.'),
+        (err) => {
+          alert('An error occurred while adding comment for bug !\nRefer to console for details.');
+          console.error(err);
+        },
+        () =>
+          this.bugsApiService.getBug(this.param).subscribe(p => this.comments = p.comments.map(f => f)
+          )
+      );
+      this.FormComments.reset();
     }
   }
 
