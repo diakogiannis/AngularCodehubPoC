@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './core/header/header.component';
 import { MainPageComponent } from './core/main-page/main-page.component';
 import { CoreModule } from './core/core.module';
 import { BugManagementModule } from './features/bug-management/bug-management.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shared/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,9 @@ import { BugManagementModule } from './features/bug-management/bug-management.mo
     BugManagementModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
