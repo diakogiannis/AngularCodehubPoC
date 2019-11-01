@@ -85,8 +85,10 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
       console.log(this.comments);
 
       // Add comment
-      this.comments.push(this.FormComments.value);
-      this.bug.comments = this.comments;
+      // this.comments.push(this.FormComments.value);
+      // this.bug.comments = this.comments;
+
+      this.bug.comments.push(this.FormComments.value);
 
       // this.bug.comments.push(
       //   this.FormComments.value
