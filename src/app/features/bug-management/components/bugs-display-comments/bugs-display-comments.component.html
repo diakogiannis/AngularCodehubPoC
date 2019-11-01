@@ -1,17 +1,17 @@
 <table id="bugscomments" class="table table-striped table-bordered">
   <thead>
-  <tr>
-    <th>ID</th>
-    <th>Description</th>
-    <th>Reporter</th>
-  </tr>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Reporter</th>
+    </tr>
   </thead>
   <tbody>
 
-  <tr *ngFor="let item of comments">
+    <tr *ngFor="let item of comments">
       <td>{{item._id}}</td>
       <td>{{item.description}}</td>
       <td>{{item.reporter}}</td>
-  </tr>
+    </tr>
   </tbody>
 </table>

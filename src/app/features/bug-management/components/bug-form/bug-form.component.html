@@ -1,1 +1,48 @@
-<p>bug-form works!</p>
+<div class="text-center">
+<form [formGroup]="bugForm">
+
+
+  <div>
+    <label>id :
+      <input disabled="true" class="form-control" formControlName="id">
+    </label>
+  </div>
+  <div>
+    <label> title :
+      <input [disabled]="readOnly" class="form-control" formControlName="title">
+    </label>
+  </div>
+
+  <div>
+    <label>  description :
+      <input [disabled]="readOnly" class="form-control" formControlName="description">
+    </label>
+  </div>
+  <div>
+    <label>  priority :
+      <input [disabled]="readOnly" class="form-control" formControlName="priority">
+    </label>
+  </div>
+  <div>
+    <label>  reporter :
+      <input [disabled]="readOnly" class="form-control" formControlName="reporter">
+    </label>
+  </div>
+  <div>
+    <label>  status :
+      <input [disabled]="readOnly" class="form-control" formControlName="status">
+    </label>
+  </div>
+  <div>
+    <label>  updatedAt :
+      <input [disabled]="true" class="form-control" formControlName="updatedAt">
+    </label>
+  </div>
+  <div>
+    <label>  createdAt :
+      <input [disabled]="true" class="form-control" formControlName="createdAt">
+    </label>
+  </div>
+
+</form>
+</div>

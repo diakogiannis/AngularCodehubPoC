@@ -1,9 +1,9 @@
-import { Bug } from 'src/app/shared/models/bug';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { SearchForm } from './models/search-form';
+import {Bug} from 'src/app/shared/models/bug';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {environment} from 'src/environments/environment';
+import {SearchForm} from './models/search-form';
 
 @Injectable({
   providedIn: 'root'
@@ -19,18 +19,32 @@ export class BugsApiService {
 
     let urlParams = new HttpParams();
 
-    if (page != null) { urlParams = urlParams.set('page', page.toString()); }
-    if (size != null) { urlParams = urlParams.set('size', size.toString()); }
-    if (sort) { urlParams = urlParams.set('sort', sort); }
-
-    if (searchForm) {
-      if (searchForm.title) { urlParams = urlParams.set('title', searchForm.title); }
-      if (searchForm.priority != null) { urlParams = urlParams.set('priority', searchForm.priority.toString()); }
-      if (searchForm.reporter) { urlParams = urlParams.set('reporter', searchForm.reporter); }
-      if (searchForm.status) { urlParams = urlParams.set('status', searchForm.status); }
+    if (page != null) {
+      urlParams = urlParams.set('page', page.toString());
+    }
+    if (size != null) {
+      urlParams = urlParams.set('size', size.toString());
+    }
+    if (sort) {
+      urlParams = urlParams.set('sort', sort);
     }
 
-    return this.http.get<Bug[]>(this.endpoint, { params: urlParams });
+    if (searchForm) {
+      if (searchForm.title) {
+        urlParams = urlParams.set('title', searchForm.title);
+      }
+      if (searchForm.priority != null) {
+        urlParams = urlParams.set('priority', searchForm.priority.toString());
+      }
+      if (searchForm.reporter) {
+        urlParams = urlParams.set('reporter', searchForm.reporter);
+      }
+      if (searchForm.status) {
+        urlParams = urlParams.set('status', searchForm.status);
+      }
+    }
+
+    return this.http.get<Bug[]>(this.endpoint, {params: urlParams});
   }
 
   // '/5da7010fcd5eba0017126443';

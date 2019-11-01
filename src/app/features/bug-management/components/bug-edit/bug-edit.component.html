@@ -1,4 +1,18 @@
-<p>bug-edit works!</p>
-<codehub-bug-form></codehub-bug-form>
+<div class="row col-sm-12 justify-content-center">
 
-<codehub-bugs-comments [FormIsValid] ="IsValid" (FormIsValidChanged)="formValidChangedHandler($event)"></codehub-bugs-comments>
+  <codehub-bug-form class="row col-sm-12 justify-content-center" [bug]="bug"></codehub-bug-form>
+
+  <div class="row col-sm-12 justify-content-center">
+    <button class="col-sm-1" (click)="update()">Save Me </button>
+  </div>
+
+  <codehub-bugs-comments class="row col-sm-12 justify-content-center" [FormIsValid]="IsValid"
+    (FormIsValidChanged)="formValidChangedHandler($event)">
+  </codehub-bugs-comments>
+  <br />
+  <!-- <codehub-bugs-display-comments class="row col-sm-12 justify-content-center"></codehub-bugs-display-comments> -->
+
+  <div class="row col-sm-12 justify-content-center">
+    <button class="col-sm-1" (click)="goBack()"> Go Back </button>
+  </div>
+</div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Bug } from '../../../../shared/models/bug';
 
 @Component({
   selector: 'codehub-bug-form',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BugFormComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  bug?: Bug;
 
-  ngOnInit() {
+  bugForm: FormGroup;
+  readOnly: false;
+
+  constructor(private fb: FormBuilder) {
   }
 
+  ngOnInit() {
+    this.createForm();
+    if (this.bug) {
+      this.bugForm.patchValue(this.bug);
+    }
+  }
+
+
+  createForm() {
+    this.bugForm = this.fb.group({
+      id: [null, [Validators.required]],
+      title: [null, [Validators.required]],
+      description: [null, [Validators.required]],
+      priority: [null, [Validators.required]],
+      reporter: [null, [Validators.required]],
+      status: [null, [Validators.required]],
+      updatedAt: [null, [Validators.required]],
+      createdAt: [null, [Validators.required]]
+    });
+  }
 }

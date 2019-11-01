@@ -17,13 +17,21 @@ import { BugEditComponent } from '../features/bug-management/components/bug-edit
 // }
 
 export class BugsGuardGuard implements CanDeactivate<BugEditComponent> {
-  canDeactivate(component: BugEditComponent,
-           route: ActivatedRouteSnapshot,
-           state: RouterStateSnapshot) {
-    if (component.IsValid !== undefined && !component.IsValid){
+
+  canDeactivate(
+    component: BugEditComponent,
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ) {
+
+    console.log(component);
+
+    // if (component.IsValid !== undefined && !component.IsValid) {
+    if (!component.formComponent.bugForm.pristine) {
       return confirm('Are you sure you want to discard your changes?');
     }
 
-     return true;
+    console.log(true);
+    return true;
   }
 }

@@ -28,20 +28,21 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
   @Input() FormIsValid: boolean;
   @Output() FormIsValidChanged: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private bugsApiService: BugsApiService, private activeRoute: ActivatedRoute) { }
+  constructor(private bugsApiService: BugsApiService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.TextFormControl = new FormControl('', Validators.required);
     this.NameReporterFormControl = new FormControl('', Validators.required);
     this.FormComments = new FormGroup({
-      freetext: this.TextFormControl,
-      nameReporter: this.NameReporterFormControl
+      description: this.TextFormControl,
+      reporter: this.NameReporterFormControl
     });
 
-    this.routeSubscription = this.activeRoute.params.subscribe((p) => {
-      this.param = '/' + p.id;
+    this.routeSubscription = this.activatedRoute.params.subscribe((p) => {
+      this.param = p.id;
     });
-    //this.bug$ = this.bugsApiService.getBug(this.param);
+
+    // this.bug$ = this.bugsApiService.getBug(this.param);
 
     /*
      * What if a reporter does not have an associated bug?
@@ -53,7 +54,10 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
     //   this.reporterList = p.map(c => c.reporter).filter(function (value, index, self)  { return self.indexOf(value) == index});
     // });
 
-    this.bugsApiService.getBug(this.param).subscribe((p) => { this.bug = p; });
+    this.bugsApiService.getBug(this.param).subscribe((p: Bug) => {
+      this.bug = p;
+      this.comments = p.comments;
+    });
     this.FormIsValid = true;
 
     this.FormComments.valueChanges.subscribe(form => {
@@ -62,11 +66,13 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
       } else {
         this.FormIsValid = true;
       }
+      alert('emitting form validity: ' + this.FormIsValid);
       this.FormIsValidChanged.emit(this.FormIsValid);
     });
   }
 
   onSubmit(AddComment = false) {
+
     if (!this.FormComments.valid) {
       return;
     }
@@ -75,8 +81,21 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
     this.FormIsValidChanged.emit(this.FormIsValid);
 
     if (AddComment) {
+
+      console.log(this.comments);
+
       // Add comment
-      this.bug.comments.push({ _id: null, description: this.FormComments.get('freetext').value, reporter: this.FormComments.get('nameReporter').value });
+      this.comments.push(this.FormComments.value);
+      this.bug.comments = this.comments;
+
+      // this.bug.comments.push(
+      //   this.FormComments.value
+      // //   {
+      // //   _id: null,
+      // //   description: this.FormComments.get('freetext').value,
+      // //   reporter: this.FormComments.get('nameReporter').value
+      // // }
+      // );
 
       this.bugsApiService.putBug(this.bug).subscribe(
         () => alert('Bug has been added.'),
@@ -84,9 +103,9 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
           alert('An error occurred while adding comment for bug !\nRefer to console for details.');
           console.error(err);
         },
-        () =>
-          this.bugsApiService.getBug(this.param).subscribe(p => this.comments = p.comments.map(f => f)
-          )
+        () => {
+          this.bugsApiService.getBug(this.param).subscribe(p => this.comments = p.comments.map(f => f));
+        }
       );
       this.FormComments.reset();
     }
