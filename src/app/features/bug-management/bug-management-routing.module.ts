@@ -9,9 +9,9 @@ import { FindBugDataResolverService } from 'src/app/shared/resolvers/find-bug-da
 const routes: Routes = [
   // { path: '', component: HomePage? },
   { path: 'bugs-search', component: BugsSearchComponent },
-  { path: 'bug-create', component: BugCreateComponent },
+  { path: 'bug-create', component: BugCreateComponent, canDeactivate: [BugsGuardGuard] },
   {
-    path: 'bug-edit/:id', component: BugEditComponent, canDeactivate: [BugsGuardGuard] , resolve: {
+    path: 'bug-edit/:id', component: BugEditComponent, canDeactivate: [BugsGuardGuard], resolve: {
       bug: FindBugDataResolverService
     }
   },

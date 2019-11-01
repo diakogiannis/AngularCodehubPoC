@@ -47,7 +47,6 @@ export class BugEditComponent implements OnInit {
   }
 
   formValidChangedHandler(formIsValid: boolean) {
-    alert('this.IsValid ' + this.IsValid);
     this.IsValid = formIsValid;
   }
 

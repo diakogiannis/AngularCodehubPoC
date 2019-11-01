@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanD
 import { Observable } from 'rxjs';
 import { BugsCommentsComponent } from '../features/bug-management/components/bugs-comments/bugs-comments.component';
 import { BugEditComponent } from '../features/bug-management/components/bug-edit/bug-edit.component';
+import { BugCreateComponent } from '../features/bug-management/components/bug-create/bug-create.component';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,13 @@ import { BugEditComponent } from '../features/bug-management/components/bug-edit
 //   }
 // }
 
-export class BugsGuardGuard implements CanDeactivate<BugEditComponent> {
+export class BugsGuardGuard implements CanDeactivate<BugEditComponent | BugCreateComponent> {
 
   canDeactivate(
-    component: BugEditComponent,
+    component: BugEditComponent | BugCreateComponent,
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
-
-    console.log(component);
 
     // if (component.IsValid !== undefined && !component.IsValid) {
     if (!component.formComponent.bugForm.pristine) {

@@ -66,7 +66,6 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
       } else {
         this.FormIsValid = true;
       }
-      alert('emitting form validity: ' + this.FormIsValid);
       this.FormIsValidChanged.emit(this.FormIsValid);
     });
   }
@@ -85,20 +84,13 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
       console.log(this.comments);
 
       // Add comment
-      this.comments.push(this.FormComments.value);
-      this.bug.comments = this.comments;
-
-      // this.bug.comments.push(
-      //   this.FormComments.value
-      // //   {
-      // //   _id: null,
-      // //   description: this.FormComments.get('freetext').value,
-      // //   reporter: this.FormComments.get('nameReporter').value
-      // // }
-      // );
+      // this.comments.push(this.FormComments.value);
+      // this.bug.comments = this.comments;
+      
+      this.bug.comments.push(this.FormComments.value);
 
       this.bugsApiService.putBug(this.bug).subscribe(
-        () => alert('Bug has been added.'),
+        null,
         (err) => {
           alert('An error occurred while adding comment for bug !\nRefer to console for details.');
           console.error(err);
