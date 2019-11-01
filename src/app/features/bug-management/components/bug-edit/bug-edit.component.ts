@@ -31,6 +31,18 @@ export class BugEditComponent implements OnInit {
   }
 
   update() {
+
+    if (this.formComponent.bugForm.invalid) {
+      Object.keys(this.formComponent.bugForm.controls).forEach(
+        control => this.formComponent.bugForm.get(control).markAsDirty()
+      );
+      return;
+    }
+
+    // Form is valid.
+    // To allow going through Guard.
+    this.formComponent.bugForm.markAsPristine();
+
     this.bugsApiService.putBug(this.formComponent.bugForm.value as Bug).subscribe(
       x => {
         console.log(x);

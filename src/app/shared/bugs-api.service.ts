@@ -12,6 +12,9 @@ export class BugsApiService {
 
   private readonly endpoint = environment.baseUrl + '/bugs';
 
+  // Common Variables (that we should actually get from our backend):
+  public priorities = [1, 2, 3];
+
   constructor(private http: HttpClient) {
   }
 

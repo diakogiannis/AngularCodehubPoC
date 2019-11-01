@@ -14,6 +14,9 @@
       <select class="custom-select" formControlName="priority">
         <option *ngFor="let priority of priorities">{{priority}}</option>
       </select>
+      <div *ngIf="searchForm.get('priority').invalid">
+        <b style="color: red; margin-left: 8px;"> Please select a bug priority. </b>
+      </div>
     </div>
 
     <div class="input-group mb-3">
@@ -31,14 +34,14 @@
     </div>
 
     <div class="row col-sm justify-content-center">
-      <button class="btn btn-outline-secondary" type="button" (click)="reset()">Reset</button>
-      <button class="btn btn-outline-primary" type="submit" [disabled]="searchForm.invalid">Search</button>
+      <button class="btn btn-outline-secondary my-button" type="button" (click)="reset()">Reset</button>
+      <button class="btn btn-outline-primary my-button" type="submit" [disabled]="searchForm.invalid">Search</button>
     </div>
   </form>
 
   <codehub-bugs-display class="row col-sm-12" [bugs]="bugs" (sortEvent)="onSortEvent($event)" (refresh)="onSubmit(true)"></codehub-bugs-display>
 
-  <div class="row col-sm-12 justify-content-center">
+  <div *ngIf="searchMade" class="row col-sm-12 justify-content-center">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item" (click)="prevPage()"><a class="page-link">Previous</a></li>

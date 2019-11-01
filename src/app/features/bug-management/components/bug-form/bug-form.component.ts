@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Bug } from '../../../../shared/models/bug';
+import { BugsApiService } from 'src/app/shared/bugs-api.service';
 
 @Component({
   selector: 'codehub-bug-form',
@@ -15,7 +16,12 @@ export class BugFormComponent implements OnInit {
   bugForm: FormGroup;
   readOnly: false;
 
-  constructor(private fb: FormBuilder) {
+  priorities: number[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private bugsApiService: BugsApiService
+  ) {
   }
 
   ngOnInit() {
@@ -23,19 +29,21 @@ export class BugFormComponent implements OnInit {
     if (this.bug) {
       this.bugForm.patchValue(this.bug);
     }
+
+    this.priorities = this.bugsApiService.priorities;
   }
 
 
   createForm() {
     this.bugForm = this.fb.group({
-      id: [null, [Validators.required]],
+      id: [null],
       title: [null, [Validators.required]],
       description: [null, [Validators.required]],
-      priority: [null, [Validators.required]],
+      priority: [1, [Validators.required]],
       reporter: [null, [Validators.required]],
       status: [null, [Validators.required]],
-      updatedAt: [null, [Validators.required]],
-      createdAt: [null, [Validators.required]]
+      updatedAt: [null],
+      createdAt: [null]
     });
   }
 }

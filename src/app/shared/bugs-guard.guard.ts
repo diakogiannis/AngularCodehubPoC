@@ -27,10 +27,9 @@ export class BugsGuardGuard implements CanDeactivate<BugEditComponent | BugCreat
 
     // if (component.IsValid !== undefined && !component.IsValid) {
     if (!component.formComponent.bugForm.pristine) {
-      return confirm('Are you sure you want to discard your changes?');
+      return confirm('You have unsaved changes!\nAre you sure you want to discard them?');
     }
 
-    console.log(true);
     return true;
   }
 }

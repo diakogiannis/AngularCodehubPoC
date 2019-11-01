@@ -12,6 +12,18 @@ button{
 .FieldActive
 {
   color: red;
-  display: inline;
-  float: right;
+  margin: 5px;
+}
+
+#submit-button {
+  width: 150px;
+  height: 50px;
+}
+
+.input-group-text {
+  width: 110px;
+}
+
+.textarea {
+  height: 100%;
 }

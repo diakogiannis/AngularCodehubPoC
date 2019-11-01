@@ -1,48 +1,77 @@
-<div class="text-center">
-<form [formGroup]="bugForm">
+<div class="text-center row col-sm-12 justify-content-center">
+  <form [formGroup]="bugForm" id="form" class="row col-sm-12 justify-content-center">
+    <div class="row input-group col-sm-12">
+      <div class="input-group-prepend">
+        <label class="input-group-text">ID:</label>
+      </div>
+      <input disabled="true" type="text" class="form-control" formControlName="id" aria-label="id">
+    </div>
 
+    <div class="row input-group col-sm-12" style="width: 100%;">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Title:</label>
+      </div>
+      <input [disabled]="readOnly" type="text" class="form-control" formControlName="title" aria-label="title">
+      <div *ngIf="bugForm.get('title').invalid && bugForm.get('title').dirty">
+        <b style="color: red; margin-left: 8px;"> Please insert a title. </b>
+      </div>
+    </div>
 
-  <div>
-    <label>id :
-      <input disabled="true" class="form-control" formControlName="id">
-    </label>
-  </div>
-  <div>
-    <label> title :
-      <input [disabled]="readOnly" class="form-control" formControlName="title">
-    </label>
-  </div>
+    <div class="row input-group col-sm-12">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Description:</label>
+      </div>
+      <input [disabled]="readOnly" type="text" class="form-control" formControlName="description"
+        aria-label="description">
+      <div *ngIf="bugForm.get('description').invalid && bugForm.get('description').dirty">
+        <b style="color: red; margin-left: 8px;"> Please insert a description. </b>
+      </div>
+    </div>
 
-  <div>
-    <label>  description :
-      <input [disabled]="readOnly" class="form-control" formControlName="description">
-    </label>
-  </div>
-  <div>
-    <label>  priority :
-      <input [disabled]="readOnly" class="form-control" formControlName="priority">
-    </label>
-  </div>
-  <div>
-    <label>  reporter :
-      <input [disabled]="readOnly" class="form-control" formControlName="reporter">
-    </label>
-  </div>
-  <div>
-    <label>  status :
-      <input [disabled]="readOnly" class="form-control" formControlName="status">
-    </label>
-  </div>
-  <div>
-    <label>  updatedAt :
-      <input [disabled]="true" class="form-control" formControlName="updatedAt">
-    </label>
-  </div>
-  <div>
-    <label>  createdAt :
-      <input [disabled]="true" class="form-control" formControlName="createdAt">
-    </label>
-  </div>
+    <div class="row input-group col-sm-12">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Priority:</label>
+      </div>
+      <select [disabled]="readOnly" class="custom-select form-control" formControlName="priority">
+        <option *ngFor="let prior of priorities">{{prior}}</option>
+      </select>
+      <div *ngIf="bugForm.get('priority').invalid && bugForm.get('priority').dirty">
+        <b style="color: red; margin-left: 8px;"> Please select a bug priority. </b>
+      </div>
+    </div>
 
-</form>
+    <div class="row input-group col-sm-12">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Reporter:</label>
+      </div>
+      <input [disabled]="readOnly" type="text" class="form-control" formControlName="reporter" aria-label="reporter">
+      <div *ngIf="bugForm.get('reporter').invalid && bugForm.get('reporter').dirty" class="FieldActive">
+        <b style="color: red; margin-left: 8px;"> Please insert a reporter. </b>
+      </div>
+    </div>
+
+    <div class="row input-group col-sm-12">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Status:</label>
+      </div>
+      <input [disabled]="readOnly" type="text" class="form-control" formControlName="status" aria-label="status">
+      <div *ngIf="bugForm.get('status').invalid && bugForm.get('status').dirty">
+        <b style="color: red; margin-left: 8px;"> Please insert a status. </b>
+      </div>
+    </div>
+
+    <div class="row input-group col-sm-12">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Updated at:</label>
+      </div>
+      <input disabled="true" type="text" class="form-control" formControlName="updatedAt" aria-label="updatedAt">
+    </div>
+
+    <div class="row input-group col-sm-12">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Created at:</label>
+      </div>
+      <input disabled="true" type="text" class="form-control" formControlName="createdAt" aria-label="createdAt">
+    </div>
+  </form>
 </div>

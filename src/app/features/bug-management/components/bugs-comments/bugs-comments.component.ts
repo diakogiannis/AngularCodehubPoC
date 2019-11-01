@@ -60,28 +60,28 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
     });
     this.FormIsValid = true;
 
-    this.FormComments.valueChanges.subscribe(form => {
-      if (form.freetext.length > 0 && form.nameReporter.length > 0) {
-        this.FormIsValid = false;
-      } else {
-        this.FormIsValid = true;
-      }
-      this.FormIsValidChanged.emit(this.FormIsValid);
-    });
+    this.FormComments.valueChanges.subscribe(
+      () => {
+        this.FormIsValidChanged.emit(this.FormComments.valid);
+      });
   }
 
   onSubmit(AddComment = false) {
 
     if (!this.FormComments.valid) {
+      this.FormComments.controls.description.markAsDirty();
+      this.FormComments.controls.reporter.markAsDirty();
       return;
     }
 
-    this.FormIsValid = true;
-    this.FormIsValidChanged.emit(this.FormIsValid);
+    this.FormIsValidChanged.emit(this.FormComments.valid);
 
     if (AddComment) {
 
       // Add comment
+      if (!this.bug.comments) {
+        this.bug.comments = [];
+      }
       this.bug.comments.push(this.FormComments.value);
 
       this.bugsApiService.putBug(this.bug).subscribe(
@@ -91,7 +91,7 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
           console.error(err);
         },
         () => {
-          this.bugsApiService.getBug(this.param).subscribe(p => this.comments = p.comments.map(f => f));
+          this.bugsApiService.getBug(this.param).subscribe(p => this.comments = p.comments);
         }
       );
       this.FormComments.reset();

@@ -17,13 +17,11 @@ export class FindBugDataResolverService implements Resolve<Bug> {
 
   resolve(activatedRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Bug> {
     const id = activatedRoute.params.id;
-    console.log(id);
     return this.bugsApiService.getBug(id).pipe(take(1),
       filter(x => {
-        if (x) {
-        console.log(x);
+        // if (x) {
         // this.router.navigate(['bug-create', id]);
-        }
+        // }
         return x.id === id;
       }
       ), catchError(() => {

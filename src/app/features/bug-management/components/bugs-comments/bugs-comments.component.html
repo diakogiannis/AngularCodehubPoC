@@ -1,38 +1,38 @@
-<form class="FormComments" [formGroup]="FormComments" (submit)="onSubmit(true)">
-  <div class="container">
-    <div class="row">
-      <div class="form-group col-md-10">
-        <label class="col-md-2">Description</label>
-        <textarea class="form-control col-md-6" rows="2" formControlName="description"></textarea>
-        <div *ngIf="FormComments.get('description').errors?.required && FormComments.get('description').dirty"
-          class="FieldActive col-md-3">
-          Field is required!
-        </div>
-      </div>
+<!-- <div class="row col-md-12 top-buffer justify-content-center"> -->
+  <h3 class="col-md-12 top-buffer"> Comments Section: </h3>
 
-      <div class="form-group col-md-10">
-        <label class="col-md-2">Name of the reporter</label>
-        <!-- <select class="browser-default custom-select col-md-5" formControlName="reporter">ion>
-          <option [ngValue]="null">Please select</option>
-          <option *ngFor="let item of reporterList">{{item}}</option>
-        </select>
-        <div *ngIf="FormComments.get('reporter').errors?.required && FormComments.get('reporter').dirty" class="FieldActive col-md-3">
-            Field is required!
-        </div> -->
-        <input type="text" class="form-control col-md-6" formControlName="reporter">
+  <form class="row col-md-12 bottom-buffer" [formGroup]="FormComments" (submit)="onSubmit(true)">
+    <div class="row offset-md-1 col-md-7 top-buffer">
+      <div class="row col-md-12 top-buffer input-group align-items-center">
+        <div class="input-group-prepend">
+          <label class="input-group-text"> Reporter: </label>
+        </div>
+        <input type="text" class="form-control col-md-6" formControlName="reporter" aria-label="reporter">
         <div *ngIf="FormComments.get('reporter').errors?.required && FormComments.get('reporter').dirty"
-          class="FieldActive col-md-3">
-          Field is required!
+          class="FieldActive">
+          <div><b>Field is required!</b></div>
         </div>
       </div>
 
-      <div class="form-group col-md-10">
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="row col-md-12 top-buffer bottom-buffer input-group align-items-center">
+        <!-- <label class="col-md-3"> Description: </label> -->
+        <div class="textarea input-group-prepend">
+          <label class="input-group-text"> Description: </label>
+        </div>
+        <textarea class="textarea form-control col-md-6" rows="2" formControlName="description"
+          aria-label="description"></textarea>
+        <div *ngIf="FormComments.get('description').errors?.required && FormComments.get('description').dirty"
+          class="FieldActive align-items-center">
+          <div><b>Field is required!</b></div>
+        </div>
       </div>
-
     </div>
-  </div>
-</form>
-<br />
 
-<codehub-bugs-display-comments [comments]="comments"></codehub-bugs-display-comments>
+    <div class="row align-items-center">
+      <button type="submit" class="btn btn-outline-primary my-button" id="submit-button">Add Comment</button>
+    </div>
+  </form>
+
+  <!-- <codehub-bugs-display-comments *ngIf="comments.length" [comments]="comments"></codehub-bugs-display-comments> -->
+  <codehub-bugs-display-comments [comments]="comments"></codehub-bugs-display-comments>
+<!-- </div> -->

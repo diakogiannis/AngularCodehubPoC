@@ -11,7 +11,7 @@ import { Bug } from 'src/app/shared/models/bug';
 })
 export class BugsSearchComponent implements OnInit {
 
-  priorities: number[] = [1, 2, 3];
+  priorities: number[] = [];
   pageSizes: number[] = [5, 10, 15];
   // TODO: Somehow get number of pages. Perhaps get all bugs (unpaginated) calculate it according to pageSize?
   numOfPages = Number.MAX_SAFE_INTEGER;
@@ -23,6 +23,7 @@ export class BugsSearchComponent implements OnInit {
   // It is utilised for sorting on click-on-header, without using the current value of the searchForm.
   // Not a pretty solution, but the least invasive.
   lastSearchForm: SearchForm;
+  searchMade = false;
 
   page = 0;
   size = this.pageSizes[0];
@@ -32,6 +33,7 @@ export class BugsSearchComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    this.priorities = this.bugsApiService.priorities;
   }
 
   initForm() {
@@ -44,8 +46,7 @@ export class BugsSearchComponent implements OnInit {
   }
 
   reset() {
-    // this.searchForm.reset();
-    console.log(this.bugs);
+    this.searchForm.reset();
   }
 
   onSubmit(byPageSort = false) {
@@ -60,7 +61,9 @@ export class BugsSearchComponent implements OnInit {
 
     // If it was caused by paging/sorting, use the 'lastSearchForm' for the search, thus ignoring the current values of the form.
     this.bugsApiService.getBugs((byPageSort ? this.lastSearchForm : this.searchForm.value), this.page, this.size, this.sort).subscribe(
-      (val: Bug[]) => this.bugs = val
+      (val: Bug[]) => this.bugs = val,
+      null,
+      () => this.searchMade = true
     );
   }
 
