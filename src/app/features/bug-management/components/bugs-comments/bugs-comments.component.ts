@@ -18,7 +18,7 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
   NameReporterFormControl: FormControl;
 
   bug: Bug;
-  reporterList: Array<string>;
+  reporters: string[] = [];
 
   comments: Comments[] = [];
 
@@ -31,8 +31,10 @@ export class BugsCommentsComponent implements OnInit, OnDestroy {
   constructor(private bugsApiService: BugsApiService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.reporters = this.bugsApiService.reporters;
+
     this.TextFormControl = new FormControl('', Validators.required);
-    this.NameReporterFormControl = new FormControl('', Validators.required);
+    this.NameReporterFormControl = new FormControl('QA', Validators.required);
     this.FormComments = new FormGroup({
       description: this.TextFormControl,
       reporter: this.NameReporterFormControl
