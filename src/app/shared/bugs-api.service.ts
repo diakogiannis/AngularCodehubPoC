@@ -14,7 +14,7 @@ export class BugsApiService {
 
   // Common Variables (that we should actually get from our backend):
   public priorities = [1, 2, 3];
-  public reporters = ['QA', 'DEV', 'TEST'];
+  public reporters = ['QA', 'DEV', 'PO'];
 
   constructor(private http: HttpClient) {
   }
