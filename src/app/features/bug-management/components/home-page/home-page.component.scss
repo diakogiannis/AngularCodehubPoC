@@ -1,0 +1,24 @@
+@mixin my-mixin ($text-colour) {
+  font: outline;
+  font-weight: bold;
+  color: $text-colour;
+}
+
+h1 {
+  margin-top: 80px;
+
+  @include my-mixin(#192341)
+}
+
+.app-title {
+  @include my-mixin(#481b49)
+}
+
+h2 {
+  font-weight: 530;
+  margin-top: 20px;
+}
+
+.ultron-btn {
+  margin-top: 100px;
+}

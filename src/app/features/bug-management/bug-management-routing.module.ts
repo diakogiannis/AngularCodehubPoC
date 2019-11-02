@@ -5,9 +5,10 @@ import { BugsSearchComponent } from './components/bugs-search/bugs-search.compon
 import { BugCreateComponent } from './components/bug-create/bug-create.component';
 import { BugEditComponent } from './components/bug-edit/bug-edit.component';
 import { FindBugDataResolverService } from 'src/app/shared/resolvers/find-bug-data-resolver.service';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 const routes: Routes = [
-  // { path: '', component: HomePage? },
+  { path: 'home-page', component: HomePageComponent },
   { path: 'bugs-search', component: BugsSearchComponent },
   { path: 'bug-create', component: BugCreateComponent, canDeactivate: [BugsGuardGuard] },
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
       bug: FindBugDataResolverService
     }
   },
-  { path: '**', redirectTo: 'bugs-search', pathMatch: 'full' }
+  { path: '**', redirectTo: 'home-page', pathMatch: 'full' }
 ];
 
 @NgModule({

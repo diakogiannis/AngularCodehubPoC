@@ -13,6 +13,17 @@
   margin-bottom: 10px;
 }
 
-.my-button{
+.left-buffer {
+  margin-left: 10px;
+}
+
+.my-button {
   margin: 7px;
+}
+
+.input-group-prepend .input-group-text{
+  background-color: #85b3b3;
+  color: #000;
+  opacity: 90%;
+  font-weight: 620;
 }

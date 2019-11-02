@@ -10,14 +10,16 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BugsCommentsComponent } from './components/bugs-comments/bugs-comments.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BugsDisplayCommentsComponent } from './components/bugs-display-comments/bugs-display-comments.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 
 @NgModule({
   declarations: [BugsDisplayComponent, BugsSearchComponent, BugCreateComponent, BugEditComponent, BugFormComponent,
-    BugsCommentsComponent, BugsDisplayCommentsComponent],
+    BugsCommentsComponent, BugsDisplayCommentsComponent, HomePageComponent],
   imports: [
     SharedModule,
-    BugManagementRoutingModule, ReactiveFormsModule
+    BugManagementRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     BugsDisplayComponent, BugsSearchComponent, BugCreateComponent, BugEditComponent, BugFormComponent,

@@ -1,5 +1,5 @@
 <!-- <div class="row col-md-12 top-buffer justify-content-center"> -->
-  <h3 class="col-md-12 top-buffer"> Comments Section: </h3>
+  <h3 class="col-md-12 top-buffer left-buffer"> Comments Section: </h3>
 
   <form class="row col-md-12 bottom-buffer" [formGroup]="FormComments" (submit)="onSubmit(true)">
     <div class="row offset-md-1 col-md-7 top-buffer">
@@ -33,5 +33,5 @@
     </div>
   </form>
 
-  <codehub-bugs-display-comments [comments]="comments"></codehub-bugs-display-comments>
+  <codehub-bugs-display-comments [comments]="comments" class="top-buffer"></codehub-bugs-display-comments>
 <!-- </div> -->
