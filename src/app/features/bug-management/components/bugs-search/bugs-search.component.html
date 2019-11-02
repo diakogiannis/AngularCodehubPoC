@@ -39,7 +39,13 @@
     </div>
   </form>
 
-  <codehub-bugs-display class="row col-sm-12" [bugs]="bugs" (sortEvent)="onSortEvent($event)" (refresh)="onSubmit(true)"></codehub-bugs-display>
+  <div class="row col-sm-12 justify-content-center">
+    <div *ngIf="loading" class="spinner-border text-warning my-spinner" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <codehub-bugs-display class="row col-sm-12" [bugs]="bugs" (sortEvent)="onSortEvent($event)"
+    (refresh)="onSubmit(true)"></codehub-bugs-display>
 
   <div *ngIf="searchMade" class="row col-sm-12 justify-content-center">
     <nav aria-label="Page navigation example">

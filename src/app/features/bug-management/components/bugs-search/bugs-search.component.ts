@@ -15,6 +15,7 @@ export class BugsSearchComponent implements OnInit {
   pageSizes: number[] = [5, 10, 15];
   // TODO: Somehow get number of pages. Perhaps get all bugs (unpaginated) calculate it according to pageSize?
   numOfPages = Number.MAX_SAFE_INTEGER;
+  loading = false;
 
   searchForm: FormGroup;
   bugs: Bug[] = [];
@@ -51,6 +52,8 @@ export class BugsSearchComponent implements OnInit {
 
   onSubmit(byPageSort = false) {
 
+    this.loading = true;
+
     // If it was not caused by a change in the pagesize/sorting. Namely, if it was caused by hitting the 'search' button.
     if (!byPageSort) {
       // Reset us to the first page.
@@ -63,7 +66,10 @@ export class BugsSearchComponent implements OnInit {
     this.bugsApiService.getBugs((byPageSort ? this.lastSearchForm : this.searchForm.value), this.page, this.size, this.sort).subscribe(
       (val: Bug[]) => this.bugs = val,
       null,
-      () => this.searchMade = true
+      () => {
+        this.loading = false;
+        this.searchMade = true
+      }
     );
   }
 
