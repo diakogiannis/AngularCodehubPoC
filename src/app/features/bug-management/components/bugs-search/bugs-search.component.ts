@@ -12,6 +12,7 @@ import { Bug } from 'src/app/shared/models/bug';
 export class BugsSearchComponent implements OnInit {
 
   priorities: number[] = [];
+  reporters: string[] = [];
   pageSizes: number[] = [5, 10, 15];
   // TODO: Somehow get number of pages. Perhaps get all bugs (unpaginated) calculate it according to pageSize?
   numOfPages = Number.MAX_SAFE_INTEGER;
@@ -35,13 +36,14 @@ export class BugsSearchComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.priorities = this.bugsApiService.priorities;
+    this.reporters = this.bugsApiService.reporters;
   }
 
   initForm() {
     this.searchForm = this.fb.group({
       title: [''],
       priority: [1, Validators.required],
-      reporter: [''],
+      reporter: ['QA'],
       status: ['']
     });
   }

@@ -50,6 +50,6 @@ export class BugCreateComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/bugs-search']);
   }
 }

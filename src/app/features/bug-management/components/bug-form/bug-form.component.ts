@@ -17,6 +17,7 @@ export class BugFormComponent implements OnInit {
   readOnly: false;
 
   priorities: number[] = [];
+  reporters: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +32,7 @@ export class BugFormComponent implements OnInit {
     }
 
     this.priorities = this.bugsApiService.priorities;
+    this.reporters = this.bugsApiService.reporters;
   }
 
 

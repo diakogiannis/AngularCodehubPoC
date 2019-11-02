@@ -23,7 +23,12 @@
       <div class="input-group-prepend">
         <label class="input-group-text">Reporter:</label>
       </div>
-      <input type="text" class="form-control" aria-label="Reporter" formControlName="reporter">
+      <select class="custom-select" formControlName="reporter">
+        <option *ngFor="let reporter of reporters">{{reporter}}</option>
+      </select>
+      <div *ngIf="searchForm.get('reporter').invalid">
+        <b style="color: red; margin-left: 8px;"> Please select a bug reporter. </b>
+      </div>
     </div>
 
     <div class="input-group mb-3">

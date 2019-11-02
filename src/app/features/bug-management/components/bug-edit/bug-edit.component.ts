@@ -55,7 +55,7 @@ export class BugEditComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/bugs-search']);
   }
 
   formValidChangedHandler(formIsValid: boolean) {

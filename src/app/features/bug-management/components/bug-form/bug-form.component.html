@@ -44,9 +44,11 @@
       <div class="input-group-prepend">
         <label class="input-group-text">Reporter:</label>
       </div>
-      <input [disabled]="readOnly" type="text" class="form-control" formControlName="reporter" aria-label="reporter">
-      <div *ngIf="bugForm.get('reporter').invalid && bugForm.get('reporter').dirty" class="FieldActive">
-        <b style="color: red; margin-left: 8px;"> Please insert a reporter. </b>
+      <select [disabled]="readOnly" class="custom-select form-control" formControlName="reporter">
+        <option *ngFor="let reporter of reporters">{{reporter}}</option>
+      </select>
+      <div *ngIf="bugForm.get('reporter').invalid && bugForm.get('reporter').dirty">
+        <b style="color: red; margin-left: 8px;"> Please select a bug reporter. </b>
       </div>
     </div>
 
