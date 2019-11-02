@@ -6,20 +6,3 @@
   width: 90px;
 }
 
-.my-spinner {
-  display: inline-block;
-  position: absolute;
-  top: 10%;
-  left: 43%;
-  z-index: 1;
-  width: 10rem;
-  height: 10rem;
-  vertical-align: text-bottom;
-  border: 1.5em solid rgb(107, 64, 71);
-  border-right-color: currentcolor;
-  border-right-color: transparent;
-  border-radius: 50%;
-  -webkit-animation: spinner-border .75s linear infinite;
-  animation: spinner-border .75s linear infinite;
-}
-
